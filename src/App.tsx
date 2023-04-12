@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useState } from 'react';
+import { RecoilRoot } from 'recoil';
+import { ContentGrid } from './components/ContentGrid';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 function App() {
+  const [isDark] = useState<boolean>(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <CssBaseline />
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" sx={{ textTransform: 'uppercase' }}>[JWF] // [Recoil Demo]</Typography>
+            </Toolbar>
+          </AppBar>
+          <ContentGrid />
+        </Box>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 
