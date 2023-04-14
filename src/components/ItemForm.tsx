@@ -3,10 +3,13 @@ import { useState } from "react";
 
 interface AddItemFormProps {
   onAddItem: (text: string, timeToResolve: number) => void;
+  totalItems: number;
 }
 
-export const AddItemForm = ({ onAddItem }: AddItemFormProps) => {
-  const [itemName, setItemName] = useState<string>('New Item');
+const getNewItemName = (totalItems: number) => `Item #${totalItems + 1}`;
+
+export const AddItemForm = ({ onAddItem, totalItems }: AddItemFormProps) => {
+  const [itemName, setItemName] = useState<string>(getNewItemName(totalItems));
   const [time, setTime] = useState<number>(2000);
 
   return (
@@ -35,7 +38,11 @@ export const AddItemForm = ({ onAddItem }: AddItemFormProps) => {
         />
         <Button
           variant="contained"
-          onClick={() => onAddItem(itemName, time)}
+          onClick={() => {
+            totalItems++;
+            setItemName(getNewItemName(totalItems));
+            onAddItem(itemName, time);
+          }}
         >
           Add Item
         </Button>

@@ -33,7 +33,7 @@ export const ContentGrid = () => {
           )
         }
       </Grid>
-      <AddItemForm onAddItem={handleItemAdd} />
+      <AddItemForm onAddItem={handleItemAdd} totalItems={gridItems.length || 0} />
     </Box>
   );
 }
