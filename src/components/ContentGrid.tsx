@@ -4,25 +4,20 @@ import { GridItem } from "../state/GridState";
 import { ContentGridSuspenseWrapper } from "./ContentGridSuspenseWrapper";
 import { AddItemForm } from "./ItemForm";
 
-const defaultGridItems = [
-  { title: 'Item #1', timeToResolve: 1000 },
-  { title: 'Item #2', timeToResolve: 10000 },
-  { title: 'Item #3', timeToResolve: 2000 },
-  { title: 'Item #4', timeToResolve: 6000 },
-  { title: 'Item #5', timeToResolve: 4000 },
-  { title: 'Item #6', timeToResolve: 6000 },
-  { title: 'Item #7', timeToResolve: 7000 },
-];
-
 export const ContentGrid = () => {
-  const [gridItems, setGridItems] = useState<GridItem[]>(defaultGridItems);
+  const [gridItems, setGridItems] = useState<GridItem[]>(
+    Array.from({ length: 9 }, (_, idx) => ({
+      title: `Item #${idx + 1}`,
+      timeToResolve: Math.floor(Math.random() * 10000),
+    }))
+  );
 
   const handleItemAdd = useCallback((title: string, timeToResolve: number) => {
     setGridItems((prevGridItems) => [
       ...prevGridItems,
-      { title: `${title}-${gridItems.length + 1}`, timeToResolve }
+      { title: `${title}`, timeToResolve }
     ]);
-  }, [gridItems.length, setGridItems]);
+  }, [setGridItems]);
 
   return (
     <Box

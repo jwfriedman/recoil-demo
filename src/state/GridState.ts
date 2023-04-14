@@ -15,11 +15,13 @@ const runTimeout = (timeToResolve: number) =>
 export const GridItemsQuery = selectorFamily({
   key: "GridItemsQuery",
   get: (item: any) => async () => {
-    console.log(item);
-    const responseVal = await runTimeout(item.timeToResolve);
+    const responseImg = await fetch('https://cataas.com/cat?type=sq');
+    await runTimeout(item.timeToResolve);
+    const catImage = await responseImg.blob();
     return {
       title: item.title,
-      responseTime: responseVal as number,
-    }
+      timeToResolve: item.timeToResolve,
+      catImage,
+    };
   }
 });

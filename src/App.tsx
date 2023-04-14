@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Switch, Toolbar, Typography } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useState } from 'react';
@@ -18,7 +18,7 @@ const lightTheme = createTheme({
 });
 
 function App() {
-  const [isDark] = useState<boolean>(true);
+  const [isDark, setIsDark] = useState<boolean>(false);
   return (
     <RecoilRoot>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
@@ -26,7 +26,20 @@ function App() {
         <Box display="flex" flexDirection="column" alignItems="center">
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h6" sx={{ textTransform: 'uppercase' }}>[JWF] // [Recoil Demo]</Typography>
+              <Box
+                width="100%"
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+              >
+                <Typography variant="h6" sx={{ textTransform: 'uppercase' }}>[JWF] // [Recoil Demo]</Typography>
+                <Switch
+                  checked={isDark}
+                  onChange={((e) => {
+                    setIsDark(e.target.checked);
+                  })}
+                />
+              </Box>
             </Toolbar>
           </AppBar>
           <ContentGrid />
