@@ -2,7 +2,7 @@ import { Box, CircularProgress, Grid, Paper } from "@mui/material";
 import { Suspense } from "react";
 import { ContentGridItem } from "./ContentGridItem";
 
-export const ContentGridSuspenseWrapper = ({ index }: { index: number }) =>
+export const ContentGridSuspenseWrapper = ({ item }: { item: Record<string, any> }) =>
   <Grid item xs={4}>
     <Paper
       elevation={6}
@@ -31,7 +31,7 @@ export const ContentGridSuspenseWrapper = ({ index }: { index: number }) =>
           </Box>
         }>
           <ContentGridItem
-            index={index}
+            item={item}
           />
         </Suspense>
       </Box>

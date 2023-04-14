@@ -6,8 +6,8 @@ interface AddItemFormProps {
 }
 
 export const AddItemForm = ({ onAddItem }: AddItemFormProps) => {
-  const [itemName, setItemName] = useState<string>('');
-  const [time, setTime] = useState<number>(0);
+  const [itemName, setItemName] = useState<string>('New Item');
+  const [time, setTime] = useState<number>(2000);
 
   return (
     <Paper elevation={6}>

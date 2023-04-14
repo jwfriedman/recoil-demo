@@ -1,9 +1,10 @@
+import { ThumbUp } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { GridItemsQuery } from "../state/GridState";
 
-export const ContentGridItem = ({ index }: { index: number }) => {
-  const item = useRecoilValue(GridItemsQuery(index));
+export const ContentGridItem = ({ item }: { item: Record<string, any> }) => {
+  const value = useRecoilValue(GridItemsQuery(item));
   return (
     <Box
       display="flex"
@@ -14,9 +15,10 @@ export const ContentGridItem = ({ index }: { index: number }) => {
       width="100%"
     >
       <Typography variant="h6">
-        <strong>{item.title}</strong>
+        <strong>{value.title}</strong>
       </Typography>
-      <Typography>{item.response}</Typography>
+      <ThumbUp fontSize="large" />
+      <Typography>Resolved in {value.responseTime}</Typography>
     </Box>
   );
 }
