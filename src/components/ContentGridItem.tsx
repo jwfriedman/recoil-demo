@@ -1,4 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Refresh } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { useRecoilRefresher_UNSTABLE, useRecoilValue } from "recoil";
 import { GridItemsQuery } from "../state/GridState";
 
@@ -12,6 +13,7 @@ export const ContentGridItem = ({ item }: { item: Record<string, any> }) => {
       flexDirection="column"
       alignItems="center"
       justifyContent="space-between"
+      padding={1}
       height="100%"
       width="100%"
       sx={{
@@ -20,26 +22,33 @@ export const ContentGridItem = ({ item }: { item: Record<string, any> }) => {
         backgroundSize: "cover",
       }}
     >
-      <Button onClick={refresh}>Refresh</Button>
       <Box
+        width="100%"
         display="flex"
         flexDirection="row"
-        justifyContent="center"
-        bgcolor="rgba(0,0,0,0.25)"
-        marginTop={1}
+        justifyContent="space-between"
+        padding={1}
+        bgcolor="rgba(0,0,0,0.5)"
       >
-        <Typography variant="h6" color="white">
+        <Typography color="white">
           <strong>{value.title}</strong>
         </Typography>
+        <IconButton
+          onClick={refresh}
+          sx={{ padding: 0 }}
+        >
+          <Refresh sx={{ color: 'white' }} />
+        </IconButton>
       </Box>
       <Box
         display="flex"
         flexDirection="row"
         justifyContent="center"
         bgcolor="rgba(0,0,0,0.25)"
-        marginBottom={1}
       >
-        <Typography color="white">Resolved in {value.timeToResolve}ms</Typography>
+        <Typography
+          sx={{ color: 'white', fontSize: '12px' }}
+        >Resolved in {value.timeToResolve}ms</Typography>
       </Box>
     </Box>
   );

@@ -6,7 +6,7 @@ interface AddItemFormProps {
   totalItems: number;
 }
 
-const getNewItemName = (totalItems: number) => `Item #${totalItems + 1}`;
+const getNewItemName = (totalItems: number) => `Cat #${totalItems + 1}`;
 
 export const AddItemForm = ({ onAddItem, totalItems }: AddItemFormProps) => {
   const [itemName, setItemName] = useState<string>(getNewItemName(totalItems));

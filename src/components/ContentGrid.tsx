@@ -7,7 +7,7 @@ import { AddItemForm } from "./ItemForm";
 export const ContentGrid = () => {
   const [gridItems, setGridItems] = useState<GridItem[]>(
     Array.from({ length: 9 }, (_, idx) => ({
-      title: `Item #${idx + 1}`,
+      title: `Cat #${idx + 1}`,
       timeToResolve: Math.floor(Math.random() * 10000),
     }))
   );
