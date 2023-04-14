@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import { useRecoilValue } from "recoil";
+import { Box, Button, Typography } from "@mui/material";
+import { useRecoilRefresher_UNSTABLE, useRecoilValue } from "recoil";
 import { GridItemsQuery } from "../state/GridState";
 
 export const ContentGridItem = ({ item }: { item: Record<string, any> }) => {
   const value = useRecoilValue(GridItemsQuery(item));
+  const refresh = useRecoilRefresher_UNSTABLE(GridItemsQuery(item));
 
   return (
     <Box
@@ -19,6 +20,7 @@ export const ContentGridItem = ({ item }: { item: Record<string, any> }) => {
         backgroundSize: "cover",
       }}
     >
+      <Button onClick={refresh}>Refresh</Button>
       <Box
         display="flex"
         flexDirection="row"
